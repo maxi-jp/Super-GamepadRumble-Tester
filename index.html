@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Gamepad Rumble Tester</title>
+    <meta name="description" content="Interactive browser-based haptic feedback tester. Fire named rumble presets or dial in custom strong/weak motor intensities live — no install needed.">
+    <meta name="keywords" content="Gamepad, rumble, haptic feedback, vibration, tester, Xbox, DualSense, Web Gamepad API">
+    <meta name="author" content="Maximiliano Miranda">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="rumble_ui.css">
+</head>
+<body>
+
+    <header>
+        <h1>Super Gamepad Rumble Tester</h1>
+        <p class="tagline">Fire haptic presets or dial custom motor intensities in real time</p>
+    </header>
+
+    <div id="container">
+        <!-- Canvas: full 640x480 — ring bursts animate in the background -->
+        <canvas id="myCanvas" width="640" height="480"></canvas>
+
+        <!-- HTML UI overlay — managed via RumbleUI extends HTMLMenu -->
+        <div id="rumblePanel">
+
+        <div id="statusBar">
+            <span class="dot" id="statusDot"></span>
+            <span id="statusText">No gamepad detected — keyboard shortcuts still work</span>
+        </div>
+
+        <div class="section-label">Presets</div>
+        <div id="presetGrid">
+            <button class="preset-btn preset-tap" id="presetTap">
+                <span class="key-label">1 / A</span>
+                <span class="preset-params">S:0.0  W:0.4  80ms</span>
+                <span class="preset-name">Tap</span>
+                <span class="preset-hint">Short light buzz</span>
+            </button>
+            <button class="preset-btn preset-impact" id="presetImpact">
+                <span class="key-label">2 / B</span>
+                <span class="preset-params">S:1.0  W:0.5  300ms</span>
+                <span class="preset-name">Impact</span>
+                <span class="preset-hint">Sudden heavy hit</span>
+            </button>
+            <button class="preset-btn preset-engine" id="presetEngine">
+                <span class="key-label">3 / X</span>
+                <span class="preset-params">S:0.6  W:0.2  1000ms</span>
+                <span class="preset-name">Engine</span>
+                <span class="preset-hint">Low continuous rumble</span>
+            </button>
+            <button class="preset-btn preset-buzz" id="presetBuzz">
+                <span class="key-label">4 / Y</span>
+                <span class="preset-params">S:0.0  W:1.0  600ms</span>
+                <span class="preset-name">Buzz</span>
+                <span class="preset-hint">High-freq vibration</span>
+            </button>
+        </div>
+
+        <div class="section-label">Custom — pull LT / RT, then fire (500ms)</div>
+        <div id="customSection">
+            <div class="motor-row">
+                <span class="motor-label">LT  Strong motor</span>
+                <div class="bar-bg"><div class="bar-fill bar-strong" id="ltBar"></div></div>
+                <span class="motor-value" id="ltValue">0.000</span>
+            </div>
+            <div class="motor-row">
+                <span class="motor-label">RT  Weak motor</span>
+                <div class="bar-bg"><div class="bar-fill bar-weak" id="rtBar"></div></div>
+                <span class="motor-value" id="rtValue">0.000</span>
+            </div>
+            <div id="customFooter">
+                <span id="fireHint">▶  START / Enter  →  fire</span>
+                <button id="fireBtn">Fire custom</button>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div id="lastCallArea">
+            <div class="section-label">Last call</div>
+            <div id="lastCallAnnotation">// gamepadIndex  strong  weak  duration (ms)</div>
+            <div id="lastCallSnippet" class="placeholder">Fire a preset or custom rumble to see the call here</div>
+        </div>
+
+        </div><!-- /#rumblePanel -->
+    </div><!-- /#container -->
+    
+    <p class="hint">Connect a controller — keyboard 1-4 also fires the presets</p>
+
+    <div class="badges">
+        <span class="badge badge-tap">Tap</span>
+        <span class="badge badge-impact">Impact</span>
+        <span class="badge badge-engine">Engine</span>
+        <span class="badge badge-buzz">Buzz</span>
+        <span class="badge badge-custom">Custom LT / RT</span>
+    </div>
+
+    <p class="cross-promo">
+        Looking for a full buttons &amp; sticks tester? Check out the <a href="https://maxi-jp.github.io/Super-Gamepad-Tester/" target="_blank" rel="noopener">Super Gamepad Tester</a>!
+    </p>
+
+    <footer>
+        Built with <a href="https://github.com/maxi-jp/HTML5_Engine" target="_blank" rel="noopener">HTML5_Engine</a> by <a href="https://github.com/maxi-jp" target="_blank" rel="noopener">maxi-jp</a>
+    </footer>
+
+    <script src="engine.js"></script>
+    <script src="rumble_test_html.js"></script>
+
+</body>
+</html>
