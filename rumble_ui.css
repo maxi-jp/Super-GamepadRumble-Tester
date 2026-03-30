@@ -21,7 +21,7 @@
     left: 0;
     /* HTMLMenu sets width/height via coverCanvas=true */
     background: transparent;
-    padding: 14px 20px 16px;
+    padding: 14px 20px;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     color: #e2e8f0;
     text-align: left;
@@ -257,6 +257,16 @@
     margin: 10px 0;
 }
 
+.wave-strip {
+    flex-grow: 1;
+}
+
+/* Push the divider (and everything below it) to the bottom of the
+   usable panel area, leaving a transparent wave strip below. */
+#rumblePanel > .divider {
+    margin-top: auto;
+}
+
 /* ── Last call section ────────────────────────────────────────────── */
 #lastCallArea {
     background: rgba(17, 24, 39, 0.72);
@@ -292,6 +302,11 @@
     89%, 93%, 97% { transform: translate(2px, -1px) rotate(1deg); }
 }
 
-header h1 {
+header h1 > .rumble {
+    display: inline-block;  /* required: transform has no effect on inline elements */
+    background: linear-gradient(130deg, #7470da 0%, #bc9a79 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     animation: title-rumble 2s infinite;
 }

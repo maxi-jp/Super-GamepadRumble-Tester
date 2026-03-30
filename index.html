@@ -14,13 +14,13 @@
 <body>
 
     <header>
-        <h1>Super Gamepad Rumble Tester</h1>
+        <h1>Super Gamepad <span class="rumble">Rumble</span> Tester</h1>
         <p class="tagline">Fire haptic presets or dial custom motor intensities in real time</p>
     </header>
 
     <div id="container">
-        <!-- Canvas: full 640x480 — ring bursts animate in the background -->
-        <canvas id="myCanvas" width="640" height="480"></canvas>
+        <!-- Canvas: full 640x640 — ring bursts animate in the background, oscilloscope wave at the bottom -->
+        <canvas id="myCanvas" width="640" height="640"></canvas>
 
         <!-- HTML UI overlay — managed via RumbleUI extends HTMLMenu -->
         <div id="rumblePanel">
@@ -76,6 +76,8 @@
             </div>
         </div>
 
+        <div class="divider"></div>
+        <div class="wave-strip"></div>
         <div class="divider"></div>
 
         <div id="lastCallArea">
