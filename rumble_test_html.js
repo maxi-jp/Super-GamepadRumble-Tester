@@ -346,10 +346,13 @@ class RumbleTestHtml extends Game {
         // ── Wave shape ────────────────────────────────────────────
         const waveY = (x) =>
             WAVE_Y
+            // Strong motor — heavy low-freq motor: broad slow-rolling swell + harmonic
             + effectStrong * 26 * Math.sin(x * 0.016 + this.waveTime * 35.0)
             + effectStrong * 10 * Math.sin(x * 0.032 + this.waveTime * 55.0)
+            // Weak motor — high-freq buzz motor: tight rapid ripple + overtone
             + effectWeak   *  9 * Math.sin(x * 0.095 - this.waveTime * 180.0)
             + effectWeak   *  5 * Math.sin(x * 0.190 - this.waveTime * 280.0)
+            // Idle baseline
             + 2.5          *      Math.sin(x * 0.025 + this.waveTime * 18.0)
             + 1.2          *      Math.sin(x * 0.058 - this.waveTime * 32.0);
 
